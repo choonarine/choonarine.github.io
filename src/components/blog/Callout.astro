@@ -1,0 +1,49 @@
+---
+/*
+TODO: 형태 좀 고민해보자..
+
+1번     :   
+// only props
+<Callout title="Callout Example" name="This is callout!" />
+
+2번     :   
+// only slots
+<Callout>
+<CalloutTitle>Callout Example</CalloutTitle>
+<CalloutDescription>This is callout!</CalloutDescription>
+</Callout>
+
+3번     :   
+<Callout title="Callout Example">
+// description here! (props + slot)
+This is callout!
+</Callout>
+*/
+
+// Usage: <Callout title="Callout Example" name="This is callout!" />
+interface Props {
+  title: string;
+  description: string;
+  type?: "info" | "warning" | "danger" | "success";
+//   icon?: string;  따로 구현할 필요를 못 느끼겠어서 deprecated
+}
+
+const { title, description, type = "info" } = Astro.props;
+
+const colors = {
+  info: "border-blue-400 bg-blue-50 text-blue-800",
+  warning: "border-yellow-400 bg-yellow-50 text-yellow-800",
+  danger: "border-red-400 bg-red-50 text-red-800",
+  success: "border-green-400 bg-green-50 text-green-800",
+};
+---
+<div class={`border-l-4 p-4 rounded mb-6 ${colors[type]}`}>
+  <div class="flex items-center gap-2 mb-2">
+    <!-- {icon && <span class="icon">{icon}</span>} -->
+     <span class="icon">📤</span>
+    <strong>{title}</strong>
+  </div>
+  <div class="text-sm leading-relaxed text-black break-keep">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,25 @@
+---
+// TODO: title이랑 description은 layout에 넘기고, 여기는 최대한 간단하게 만들기
+// TODO: props에 있는 pubDate component로 만들어서 날짜 제대로 뜨게 만들기
+
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+    <h1 class="font-bold text-4xl">{post.data.title}</h1>
+    <p class="break-keep">{post.data.description}</p>
+    <Content />
+</BlogPost>

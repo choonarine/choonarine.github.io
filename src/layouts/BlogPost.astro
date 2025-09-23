@@ -1,0 +1,23 @@
+---
+// 해당 파일은 블로그 포스트 글 조회 시 사용되는 레이아웃입니다.
+
+import "../styles/global.css";
+import type { CollectionEntry } from 'astro:content';
+
+import Giscus from '../components/Giscus.astro';
+
+const { title, description, pubDate } = Astro.props;
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ?? "choonarine.github.io"}</title>
+  </head>
+
+  <body>
+    <slot />
+    <Giscus />
+  </body>
+</html>
