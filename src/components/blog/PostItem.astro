@@ -1,0 +1,14 @@
+---
+// 해당 컴포넌트는 blog index 페이지의 게시글을 보여주는 컴포넌트입니다.
+// TODO: 사진이랑 updated date 정보 넣기
+
+const { post } = Astro.props;
+---
+
+<li class="border m-6 p-2.5">
+  <a href={`/blog/${post.id}/`}>
+    <h2 class="font-bold">{post.data.title}</h2>
+    <p>{post.data.description}</p>
+    <time class=" text-gray-400">{post.data.pubDate.toDateString()}</time>
+  </a>
+</li>
