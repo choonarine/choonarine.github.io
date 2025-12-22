@@ -1,0 +1,130 @@
+---
+title: 'Understanding JavaScript Closures'
+description: 'Deep dive into JavaScript closures, how they work, and practical use cases in modern web development.'
+pubDate: 2024-02-01
+updatedDate: 2024-02-10
+tags: ['JavaScript', 'Programming', 'Fundamentals']
+category: 'Programming'
+---
+
+import Callout from '../../components/Callout.astro';
+
+<Callout type="error" title="임시 안내">
+  해당 글은 임시용 글로, AI를 활용하여 작성되었습니다. <br /> 블로그 개발 테스트 목적으로 작성되었으며, 이후 삭제될 예정입니다.
+</Callout>
+
+## What are Closures?
+
+A closure is the combination of a function bundled together with references to its surrounding state (the lexical environment). In JavaScript, closures are created every time a function is created.
+
+## Basic Example
+
+```javascript
+function outerFunction() {
+  const outerVariable = 'I am outside!';
+  
+  function innerFunction() {
+    console.log(outerVariable);
+  }
+  
+  return innerFunction;
+}
+
+const myFunction = outerFunction();
+myFunction(); // Logs: "I am outside!"
+```
+
+## Practical Use Cases
+
+### Data Privacy
+
+Closures enable data privacy by creating private variables:
+
+<Callout 
+  type="info" 
+  title="Tip"
+>
+  Closures are the foundation of the Module Pattern, which is essential for organizing code and preventing global namespace pollution.
+</Callout>
+
+```javascript
+function createCounter() {
+  let count = 0;
+  
+  return {
+    increment: () => ++count,
+    decrement: () => --count,
+    getCount: () => count
+  };
+}
+
+const counter = createCounter();
+console.log(counter.getCount()); // 0
+counter.increment();
+console.log(counter.getCount()); // 1
+```
+
+### Partial Application
+
+Create specialized functions from generic ones:
+
+```javascript
+function multiply(a) {
+  return function(b) {
+    return a * b;
+  };
+}
+
+const double = multiply(2);
+const triple = multiply(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+```
+
+### Event Handlers
+
+Closures are commonly used in event handlers:
+
+```javascript
+function setupButton(buttonId) {
+  const button = document.getElementById(buttonId);
+  let clickCount = 0;
+  
+  button.addEventListener('click', () => {
+    clickCount++;
+    console.log(`Button ${buttonId} clicked ${clickCount} times`);
+  });
+}
+```
+
+## Common Pitfalls
+
+### Loop Variables
+
+A classic closure gotcha:
+
+<Callout 
+  type="warning" 
+  title="Important"
+>
+  Using `var` in loops creates unexpected behavior due to function-level scope. Always use `let` or `const` to create block-level scope.
+</Callout>
+
+```javascript
+// Problem
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+// Logs: 3, 3, 3
+
+// Solution: Use let
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+// Logs: 0, 1, 2
+```
+
+## Conclusion
+
+Closures are a fundamental concept in JavaScript that enable powerful patterns like data privacy, partial application, and callback handling. Understanding closures deeply will make you a better JavaScript developer.

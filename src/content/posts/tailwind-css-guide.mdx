@@ -1,0 +1,79 @@
+---
+title: 'Building a Modern Blog with Tailwind CSS'
+description: 'A comprehensive guide to styling your blog with Tailwind CSS and creating beautiful, responsive designs.'
+pubDate: 2024-01-20
+tags: ['Tailwind CSS', 'CSS', 'Design']
+category: 'Design'
+---
+
+import Callout from '../../components/Callout.astro';
+
+<Callout type="error" title="임시 안내">
+  해당 글은 임시용 글로, AI를 활용하여 작성되었습니다. <br /> 블로그 개발 테스트 목적으로 작성되었으며, 이후 삭제될 예정입니다.
+</Callout>
+
+## Introduction to Tailwind CSS
+
+Tailwind CSS is a utility-first CSS framework that has revolutionized how developers approach styling web applications. Instead of writing custom CSS, you compose designs using pre-built utility classes.
+
+## Why Utility-First?
+
+The utility-first approach offers several benefits:
+
+- **Rapid Development**: Build UIs faster without leaving your HTML
+- **Consistent Design**: Use a constrained design system
+- **Maintainability**: Less CSS to maintain
+- **Responsive Design**: Built-in responsive utilities
+
+## Getting Started
+
+Install Tailwind CSS in your project:
+
+```bash
+npm install -D tailwindcss
+npx tailwindcss init
+```
+
+## Common Patterns
+
+### Typography
+
+Tailwind's typography plugin provides beautiful default styles:
+
+```html
+<article class="prose prose-lg">
+  <h1>Your Title</h1>
+  <p>Your content...</p>
+</article>
+```
+
+### Responsive Design
+
+Create responsive layouts easily:
+
+```html
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <!-- Your cards -->
+</div>
+```
+
+### Dark Mode
+
+Implement dark mode with ease:
+
+```html
+<div class="bg-white dark:bg-gray-900">
+  <p class="text-gray-900 dark:text-white">Content</p>
+</div>
+```
+
+## Best Practices
+
+1. **Use @apply Sparingly**: Extract components only when necessary
+2. **Customize Your Config**: Extend Tailwind to match your design system
+3. **Use Plugins**: Leverage the ecosystem of Tailwind plugins
+4. **Optimize for Production**: Use PurgeCSS to remove unused styles
+
+## Conclusion
+
+Tailwind CSS empowers developers to build beautiful, consistent UIs without the overhead of traditional CSS approaches. Its utility-first philosophy might feel different at first, but once you get comfortable, you'll wonder how you ever lived without it.

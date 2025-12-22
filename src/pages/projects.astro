@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import { SITE_TITLE } from '../consts';
+---
+
+<BaseLayout title={`Projects - ${SITE_TITLE}`} description="My projects and portfolio">
+  <h1 class="text-4xl font-bold mb-8">Projects</h1>
+  
+  <div class="space-y-8">
+    <article class="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+      <h2 class="text-2xl font-semibold mb-2">Project Title</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-4">
+        Description of your project. What it does, technologies used, and impact.
+      </p>
+      <div class="flex gap-4">
+        <a href="#" class="text-blue-600 hover:underline">View Project →</a>
+        <a href="#" class="text-blue-600 hover:underline">GitHub →</a>
+      </div>
+    </article>
+    
+    <article class="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+      <h2 class="text-2xl font-semibold mb-2">Another Project</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-4">
+        Description of your second project. Technologies, challenges, and outcomes.
+      </p>
+      <div class="flex gap-4">
+        <a href="#" class="text-blue-600 hover:underline">View Project →</a>
+        <a href="#" class="text-blue-600 hover:underline">GitHub →</a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

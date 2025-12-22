@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  class?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  controls?: boolean;
+  preload?: 'none' | 'metadata' | 'auto';
+}
+
+const {
+  src,
+  poster,
+  class: className,
+  autoplay = false,
+  loop = false,
+  muted = true,
+  controls = true,
+  preload = 'metadata'
+} = Astro.props;
+---
+
+<video
+  class={className}
+  poster={poster}
+  autoplay={autoplay}
+  loop={loop}
+  muted={muted}
+  controls={controls}
+  preload={preload}
+  playsinline
+>
+  <source src={src} type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+<style>
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

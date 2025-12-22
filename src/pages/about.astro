@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import { SITE_TITLE } from '../consts';
+---
+
+<BaseLayout title={`About - ${SITE_TITLE}`} description="My curriculum vitae">
+  <div class="space-y-12">
+    <section>
+      <h1 class="text-4xl font-bold mb-4">추 나린</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">Software Engineer, CS Student</p>
+      <div class="flex gap-4 mt-4 text-sm">
+        <a href="mailto:choonarine@gmail.com" class="text-blue-600 hover:underline">Email</a>
+        <a href="https://github.com/choonarine" class="text-blue-600 hover:underline">GitHub</a>
+        <a href="https://linkedin.com/in/yourprofile" class="text-blue-600 hover:underline">LinkedIn</a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 dark:border-gray-800 pb-2">Experience</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold">축제 투표 시스템 Backend Development</h3>
+          <p class="text-gray-600 dark:text-gray-400">광양고등학교 • 2018 - 2020</p>
+          <ul class="list-disc list-inside mt-2 text-gray-700 dark:text-gray-300">
+            <li>Flask → FastAPI 백엔드 개발, SQLite 사용</li>
+            <li>PM2, nginx를 이용한 CI/CD 파이프라인 구현</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 dark:border-gray-800 pb-2">Education</h2>
+      <div>
+        <h3 class="text-xl font-semibold">Code : Zero 코딩 동아리</h3>
+        <p class="text-gray-600 dark:text-gray-400">광양고등학교 • 2023 - 2025</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 dark:border-gray-800 pb-2">Skills</h2>
+      <div class="flex flex-wrap gap-2">
+        {['JavaScript', 'TypeScript', 'React / Preact', 'SolidJS', 'Bun.js', 'Node.js', 'Python', 'FastAPI', 'SQL', 'Git', 'Docker', 'C++', 'Go', 'Linux', 'Git'].map((skill) => (
+          <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 dark:border-gray-800 pb-2">Projects</h2>
+      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+        <li><a href="/projects" class="text-blue-600 hover:underline">프로젝트는 여기서 확인 부탁드립니다</a></li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

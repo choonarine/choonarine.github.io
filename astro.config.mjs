@@ -1,5 +1,34 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import solidJs from '@astrojs/solid-js';
 
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://choonarine.github.io',
+  integrations: [
+    tailwind(),
+    mdx({
+      syntaxHighlight: 'shiki',
+      shikiConfig: {
+        theme: 'github-dark',
+        wrap: true
+      }
+    }),
+    sitemap(),
+    solidJs(),
+  ],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
+  },
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: true
+    }
+  }
+});

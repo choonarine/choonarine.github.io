@@ -1,0 +1,60 @@
+---
+title: 'Getting Started with Astro.js'
+description: 'Learn how to build fast, content-focused websites with Astro.js, the modern static site generator.'
+pubDate: 2024-01-15
+tags: ['Astro', 'Web Development', 'SSG']
+category: 'Web Development'
+---
+
+import Callout from '../../components/Callout.astro';
+
+<Callout type="error" title="임시 안내">
+  해당 글은 임시용 글로, AI를 활용하여 작성되었습니다. <br /> 블로그 개발 테스트 목적으로 작성되었으며, 이후 삭제될 예정입니다.
+</Callout>
+
+## Introduction
+
+Astro is a modern static site generator that delivers lightning-fast performance by shipping zero JavaScript by default. In this post, we'll explore why Astro is becoming increasingly popular among developers.
+
+## Why Choose Astro?
+
+Astro offers several compelling advantages:
+
+1. **Zero JS by Default**: Astro ships zero JavaScript to the client unless you explicitly opt-in
+2. **Framework Agnostic**: Use React, Vue, Svelte, or any framework you prefer
+3. **Content Collections**: Built-in content management with type safety
+4. **Excellent DX**: Great developer experience with fast builds and hot reloading
+
+## Key Features
+
+### Islands Architecture
+
+Astro introduces the concept of "islands" - interactive components that hydrate independently:
+
+```javascript
+// Only this component gets JavaScript
+<MyInteractiveComponent client:load />
+```
+
+### Content Collections
+
+Organize your content with type-safe collections:
+
+```typescript
+const posts = await getCollection('posts');
+```
+
+## Performance Benefits
+
+Astro's approach leads to:
+
+- Faster page loads
+- Better SEO rankings
+- Improved Core Web Vitals
+- Lower bandwidth usage
+
+## Conclusion
+
+Astro represents a paradigm shift in how we think about building for the web. By defaulting to static HTML and only adding interactivity where needed, it achieves remarkable performance while maintaining developer flexibility.
+
+Try Astro for your next project and experience the difference!

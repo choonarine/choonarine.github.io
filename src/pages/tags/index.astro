@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+import { SITE_TITLE } from '../../consts';
+
+const allPosts = await getCollection('posts', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title={`All Tags - ${SITE_TITLE}`} description="Browse posts by tag">
+  <h1 class="text-4xl font-bold mb-8">All Tags</h1>
+  <div class="flex flex-wrap gap-4">
+    {allTags.map((tag) => {
+      const count = allPosts.filter((post) => post.data.tags.includes(tag)).length;
+      const slug = tag.toLowerCase().replace(/\s+/g, '-');
+      return (
+        <a
+          href={`/tags/${slug}`}
+          class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+        >
+          #{tag} <span class="text-gray-500">({count})</span>
+        </a>
+      );
+    })}
+  </div>
+</BaseLayout>

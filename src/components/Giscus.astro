@@ -1,0 +1,58 @@
+---
+// Giscus comments component with lazy loading
+const giscusRepo = 'choonarine/choonarine.github.io'; // Change to your repo
+const giscusRepoId = 'YOUR_REPO_ID'; // Get from Giscus website
+const giscusCategory = 'General';
+const giscusCategoryId = 'YOUR_CATEGORY_ID'; // Get from Giscus website
+---
+
+<div id="giscus-container" class="mt-8"></div>
+
+<script
+  is:inline
+  data-repo={giscusRepo}
+  data-repo-id={giscusRepoId}
+  data-category={giscusCategory}
+  data-category-id={giscusCategoryId}
+>
+  (function() {
+    const container = document.getElementById('giscus-container');
+    let giscusLoaded = false;
+
+    function loadGiscus() {
+      if (giscusLoaded) return;
+      giscusLoaded = true;
+      // TODO: edit to use your own repo and category IDs
+      const script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.setAttribute('data-repo', document.currentScript.getAttribute('data-repo'));
+      script.setAttribute('data-repo-id', document.currentScript.getAttribute('data-repo-id'));
+      script.setAttribute('data-category', document.currentScript.getAttribute('data-category'));
+      script.setAttribute('data-category-id', document.currentScript.getAttribute('data-category-id'));
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'bottom');
+      script.setAttribute('data-theme', 'preferred_color_scheme');
+      script.setAttribute('data-lang', 'en');
+      script.crossOrigin = 'anonymous';
+      script.async = true;
+
+      container.appendChild(script);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadGiscus();
+          observer.disconnect();
+        }
+      });
+    }, {
+      rootMargin: '200px'
+    });
+
+    observer.observe(container);
+  })();
+</script>
