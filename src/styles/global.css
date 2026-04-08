@@ -1,10 +1,31 @@
-/* Pretendard 폰트 - 한글 서브셋 최적화 버전 */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
-
-/* TODO: 전역 스타일 설정 필요 */
-
-/* TODO: 코딩 폰트 적용 필요 (JetBrains Mono, Fira Code 등) */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-100;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: "IBM Plex Code", "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+
+  a {
+    @apply underline-offset-4;
+  }
+}

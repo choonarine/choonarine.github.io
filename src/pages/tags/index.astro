@@ -12,7 +12,7 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
 ---
 
 <BaseLayout title={`All Tags - ${SITE_TITLE}`} description="Browse posts by tag">
-  <h1 class="text-4xl font-bold mb-8">All Tags</h1>
+  <h1 class="text-4xl font-semibold mb-8">All Tags</h1>
   <div class="flex flex-wrap gap-4">
     {allTags.map((tag) => {
       const count = allPosts.filter((post) => post.data.tags.includes(tag)).length;
@@ -20,9 +20,9 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
       return (
         <a
           href={`/tags/${slug}`}
-          class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          class="border border-zinc-300 px-3 py-1 no-underline hover:underline dark:border-zinc-700"
         >
-          #{tag} <span class="text-gray-500">({count})</span>
+          #{tag} <span class="text-zinc-500">({count})</span>
         </a>
       );
     })}

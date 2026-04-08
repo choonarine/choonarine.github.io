@@ -15,7 +15,7 @@ export default function SearchResults(props: SearchResultsProps) {
         fallback={
           <Show
             when={props.results.length > 0}
-            fallback={<p class="text-gray-600 dark:text-gray-400">No results found.</p>}
+            fallback={<p class="text-zinc-600 dark:text-zinc-400">No results found.</p>}
           >
             <For each={props.results}>
               {(item) => <ResultItem item={item} />}
@@ -23,7 +23,7 @@ export default function SearchResults(props: SearchResultsProps) {
           </Show>
         }
       >
-        <p class="text-gray-600 dark:text-gray-400">Enter a search query to see results.</p>
+        <p class="text-zinc-600 dark:text-zinc-400">Enter a search query to see results.</p>
       </Show>
     </div>
   );

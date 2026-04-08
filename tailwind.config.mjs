@@ -6,7 +6,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Pretendard', 'Noto Sans KR', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['Pretendard', 'Noto Sans KR', 'ui-monospace', 'monospace'],
+        mono: ['IBM Plex Code', 'IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
       },
     },
   },

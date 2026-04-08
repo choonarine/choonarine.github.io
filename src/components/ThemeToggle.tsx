@@ -6,7 +6,6 @@ export const ThemeToggle: Component = () => {
   const [theme, setTheme] = createSignal<Theme>('light');
   const [mounted, setMounted] = createSignal(false);
 
-  // Get theme preference
   const getThemePreference = (): Theme => {
     if (typeof localStorage !== 'undefined') {
       const stored = localStorage.getItem('theme') as Theme | null;
@@ -20,14 +19,12 @@ export const ThemeToggle: Component = () => {
     return 'light';
   };
 
-  // Initialize theme on mount
   onMount(() => {
     const initialTheme = getThemePreference();
     setTheme(initialTheme);
     setMounted(true);
   });
 
-  // Update DOM when theme changes
   createEffect(() => {
     if (!mounted()) return;
     
@@ -51,11 +48,10 @@ export const ThemeToggle: Component = () => {
     <button
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900"
     >
-      {/* Sun icon (light mode) */}
       <svg
-        class={`w-5 h-5 transition-opacity duration-200 ${theme() === 'dark' ? 'opacity-0 absolute' : 'opacity-100'}`}
+        class={`h-5 w-5 ${theme() === 'dark' ? 'absolute opacity-0' : 'opacity-100'}`}
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -68,9 +64,8 @@ export const ThemeToggle: Component = () => {
         />
       </svg>
 
-      {/* Moon icon (dark mode) */}
       <svg
-        class={`w-5 h-5 transition-opacity duration-200 ${theme() === 'light' ? 'opacity-0 absolute' : 'opacity-100'}`}
+        class={`h-5 w-5 ${theme() === 'light' ? 'absolute opacity-0' : 'opacity-100'}`}
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

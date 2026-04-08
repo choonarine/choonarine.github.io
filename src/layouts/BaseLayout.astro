@@ -18,6 +18,11 @@ const navItems = [
   { label: 'Projects', href: '/projects' },
   { label: 'About', href: '/about' },
 ];
+
+const navClass = (active: boolean) => [
+  'no-underline hover:underline',
+  active && 'underline',
+];
 ---
 
 <!doctype html>
@@ -30,73 +35,54 @@ const navItems = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
-      // Theme initialization - runs before page render to avoid flash
       (function() {
         const getThemePreference = () => {
           const stored = localStorage.getItem('theme');
           if (stored) return stored;
           return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
-        
+
         const theme = getThemePreference();
         document.documentElement.classList.toggle('dark', theme === 'dark');
       })();
     </script>
-    <style>
-      /* Page fade-in animation */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      main {
-        animation: fadeIn 0.3s ease-out;
-      }
-    </style>
   </head>
 
-  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
-    <header class="border-b border-gray-200 dark:border-gray-800">
-      <nav class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div class="hidden md:flex items-center gap-6">
-          <a href="/" class="text-xl font-bold">{SITE_TITLE}</a>
-          <a href="/posts" class:list={['hover:text-blue-600 transition-colors', pathname.startsWith('/posts') && 'text-blue-600']}>Posts</a>
-          <a href="/projects" class:list={['hover:text-blue-600 transition-colors', pathname === '/projects' && 'text-blue-600']}>Projects</a>
-          <a href="/about" class:list={['hover:text-blue-600 transition-colors', pathname === '/about' && 'text-blue-600']}>About</a>
+  <body class="flex min-h-screen flex-col">
+    <header class="border-b border-zinc-200 dark:border-zinc-800">
+      <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
+        <div class="hidden items-center gap-6 md:flex">
+          <a href="/" class="text-xl font-semibold no-underline">{SITE_TITLE}</a>
+          <a href="/posts" class:list={navClass(pathname.startsWith('/posts'))}>Posts</a>
+          <a href="/projects" class:list={navClass(pathname === '/projects')}>Projects</a>
+          <a href="/about" class:list={navClass(pathname === '/about')}>About</a>
         </div>
 
-        <!-- Mobile Logo -->
-        <a href="/" class="md:hidden text-xl font-bold">{SITE_TITLE}</a>
+        <a href="/" class="text-xl font-semibold no-underline md:hidden">{SITE_TITLE}</a>
 
         <div class="flex items-center gap-4">
-          <form action="/search" method="get" class="hidden md:flex items-center">
+          <form action="/search" method="get" class="hidden items-center md:flex">
             <input
               type="text"
               name="q"
               placeholder="Search..."
-              class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
+              class="border border-zinc-300 bg-white px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-950 dark:focus:ring-zinc-100"
             />
           </form>
-          
+
           <ThemeToggle client:load />
           <MobileNav items={navItems} pathname={pathname} client:load />
         </div>
       </nav>
     </header>
 
-    <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
+    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
       <slot />
     </main>
 
-    <footer class="border-t border-gray-200 dark:border-gray-800 mt-16">
-      <div class="max-w-4xl mx-auto px-4 py-8 text-center text-gray-600 dark:text-gray-400">
-        <p>Made with ❤️</p>
+    <footer class="mt-16 border-t border-zinc-200 dark:border-zinc-800">
+      <div class="mx-auto max-w-4xl px-4 py-8 text-sm text-zinc-600 dark:text-zinc-400">
+        <p>{SITE_TITLE}</p>
       </div>
     </footer>
   </body>

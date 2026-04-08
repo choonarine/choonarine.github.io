@@ -18,7 +18,7 @@ export default function SearchInput(props: SearchInputProps) {
         onInput={(e) => props.onSearch(e.currentTarget.value)}
         onKeyPress={handleKeyPress}
         placeholder="Search posts..."
-        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="w-full border border-zinc-300 bg-white px-4 py-2 focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-950 dark:focus:ring-zinc-100"
       />
     </div>
   );
