@@ -1,9 +1,10 @@
 ---
 // Giscus comments component with lazy loading
-const giscusRepo = 'choonarine/choonarine.github.io'; // Change to your repo
-const giscusRepoId = 'YOUR_REPO_ID'; // Get from Giscus website
-const giscusCategory = 'General';
-const giscusCategoryId = 'YOUR_CATEGORY_ID'; // Get from Giscus website
+// See Also: https://giscus.app/ko
+const giscusRepo = 'choonarine/choonarine.github.io';
+const giscusRepoId = 'R_kgDOL2yeJw';
+const giscusCategory = 'Comments';
+const giscusCategoryId = 'DIC_kwDOL2yeJ84Cvz0E';
 ---
 
 <div id="giscus-container" class="mt-8"></div>
@@ -22,7 +23,8 @@ const giscusCategoryId = 'YOUR_CATEGORY_ID'; // Get from Giscus website
     function loadGiscus() {
       if (giscusLoaded) return;
       giscusLoaded = true;
-      // TODO: edit to use your own repo and category IDs
+
+      // 사이트에 맞게 정보 수정 원하는 대로 하세요
       const script = document.createElement('script');
       script.src = 'https://giscus.app/client.js';
       script.setAttribute('data-repo', document.currentScript.getAttribute('data-repo'));
@@ -30,7 +32,7 @@ const giscusCategoryId = 'YOUR_CATEGORY_ID'; // Get from Giscus website
       script.setAttribute('data-category', document.currentScript.getAttribute('data-category'));
       script.setAttribute('data-category-id', document.currentScript.getAttribute('data-category-id'));
       script.setAttribute('data-mapping', 'pathname');
-      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-strict', '1');
       script.setAttribute('data-reactions-enabled', '1');
       script.setAttribute('data-emit-metadata', '0');
       script.setAttribute('data-input-position', 'bottom');
