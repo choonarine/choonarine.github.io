@@ -11,17 +11,17 @@ interface MobileNavProps {
 }
 
 export const MobileNav: Component<MobileNavProps> = (props) => {
-  const [isOpen, setIsOpen] = createSignal(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = createSignal(false);
 
   const openMenu = () => {
-    setIsOpen(true);
+    setIsMobileNavOpen(true);
     if (typeof document !== 'undefined') {
       document.body.style.overflow = 'hidden';
     }
   };
 
   const closeMenu = () => {
-    setIsOpen(false);
+    setIsMobileNavOpen(false);
     if (typeof document !== 'undefined') {
       document.body.style.overflow = '';
     }
@@ -39,7 +39,7 @@ export const MobileNav: Component<MobileNavProps> = (props) => {
         </svg>
       </button>
 
-      <Show when={isOpen()}>
+      <Show when={isMobileNavOpen()}>
         <div class="fixed inset-0 z-40 bg-black/40 md:hidden">
           <div class="fixed bottom-0 right-0 top-0 flex w-64 flex-col border-l border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
             <div class="flex items-center justify-between border-b border-zinc-200 px-6 py-4 dark:border-zinc-800">

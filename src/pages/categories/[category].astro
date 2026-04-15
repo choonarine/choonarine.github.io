@@ -4,9 +4,7 @@ import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('posts', ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true;
-  });
+  const allPosts = await getCollection('posts', ({ data }) => data.draft !== true);
 
   const allCategories = [...new Set(allPosts.map((post) => post.data.category))];
 
@@ -27,7 +25,7 @@ const { category, posts } = Astro.props;
 ---
 
 <BaseLayout title={`Category: ${category} - choonarine`} description={`Posts in ${category} category`}>
-  <h1 class="text-4xl font-semibold mb-2">{category}</h1>
+  <h1 class="text-4xl font-mono font-semibold mb-2">{category}</h1>
   <p class="text-zinc-600 dark:text-zinc-400 mb-8">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
   
   <div class="space-y-6">

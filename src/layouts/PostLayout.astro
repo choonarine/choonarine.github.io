@@ -19,7 +19,10 @@ const tocItems = headings.filter((heading) => heading.depth === 2);
 <BaseLayout title={post.data.title} description={post.data.description}>
   <article>
     <header class="mb-8">
+      <!-- Post Title -->
       <h1 class="mb-4 text-4xl font-semibold">{post.data.title}</h1>
+
+      <!-- Post published / updated date & reading time -->
       <div class="mb-6 flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
         <time datetime={post.data.pubDate.toISOString()}>
           {post.data.pubDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -33,6 +36,8 @@ const tocItems = headings.filter((heading) => heading.depth === 2);
           </>
         )}
       </div>
+
+      <!-- Post category & tags -->
       <div class="flex flex-wrap gap-2">
         <a href={`/categories/${post.data.category.toLowerCase().replace(/\s+/g, '-')}`} class="inline-flex items-center border border-zinc-300 px-2 py-1 text-sm font-medium no-underline hover:underline dark:border-zinc-700">
           {post.data.category}
@@ -47,6 +52,7 @@ const tocItems = headings.filter((heading) => heading.depth === 2);
         ))}
       </div>
     </header>
+
     {tocItems.length > 0 && (
       <section class="mb-10 w-[95%] rounded-lg border border-zinc-200 p-2 mx-auto dark:border-zinc-800">
         <div>
@@ -64,7 +70,7 @@ const tocItems = headings.filter((heading) => heading.depth === 2);
         </div>
       </section>
     )}
-    <div class="prose prose-lg max-w-none dark:prose-invert">
+    <div class="prose prose-lg max-w-none dark:prose-invert break-keep">
       <Content components={{ pre: CodeBlock }} />
     </div>
   </article>

@@ -5,6 +5,8 @@ import { MobileNav } from '../components/MobileNav';
 
 import { SITE_TITLE } from '../consts';
 
+import 'rehype-katex';
+
 interface Props {
   title: string;
   description?: string;
@@ -46,6 +48,10 @@ const navClass = (active: boolean) => [
         document.documentElement.classList.toggle('dark', theme === 'dark');
       })();
     </script>
+
+    <!-- KaTeX support -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.css" integrity="sha384-UA8juhPf75SzzAMA/4fo3yOU7sBJ0om7SCD2GHq0fZqZco6tr1UCV7nUbk9J90JM" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.js" integrity="sha384-Tt7wBxLKwSzFVRET4O4U9H6v8MNaQ/CjN2FMP4xFm0ErrFu6aNqoonRVW5W40iGI" crossorigin="anonymous"></script>
   </head>
 
   <body class="flex min-h-screen flex-col">
@@ -81,8 +87,25 @@ const navClass = (active: boolean) => [
     </main>
 
     <footer class="mt-16 border-t border-zinc-200 dark:border-zinc-800">
-      <div class="mx-auto max-w-4xl px-4 py-8 text-sm text-zinc-600 dark:text-zinc-400">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-8 text-sm text-zinc-600 dark:text-zinc-400">
         <p>{SITE_TITLE}</p>
+        <a
+          href="https://github.com/choonarine"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Visit GitHub profile"
+          class="text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <path d="M12 .5C5.649.5.5 5.649.5 12A11.5 11.5 0 0 0 8.36 22.03c.575.106.785-.25.785-.556 0-.274-.01-1-.016-1.962-3.182.692-3.853-1.533-3.853-1.533-.52-1.32-1.27-1.672-1.27-1.672-1.038-.71.08-.696.08-.696 1.148.08 1.75 1.18 1.75 1.18 1.02 1.75 2.675 1.245 3.327.952.103-.74.4-1.245.727-1.53-2.54-.29-5.212-1.27-5.212-5.652 0-1.248.446-2.27 1.177-3.07-.118-.29-.51-1.455.112-3.034 0 0 .96-.307 3.146 1.173A10.94 10.94 0 0 1 12 6.03c.974.005 1.955.132 2.872.388 2.184-1.48 3.143-1.173 3.143-1.173.624 1.58.232 2.744.114 3.034.733.8 1.175 1.822 1.175 3.07 0 4.393-2.676 5.36-5.224 5.645.41.353.776 1.05.776 2.116 0 1.528-.014 2.76-.014 3.136 0 .31.207.668.79.555A11.502 11.502 0 0 0 23.5 12C23.5 5.649 18.351.5 12 .5Z" />
+          </svg>
+        </a>
       </div>
     </footer>
   </body>

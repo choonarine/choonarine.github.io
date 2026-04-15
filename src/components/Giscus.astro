@@ -1,60 +1,66 @@
 ---
-// Giscus comments component with lazy loading
-// See Also: https://giscus.app/ko
 const giscusRepo = 'choonarine/choonarine.github.io';
 const giscusRepoId = 'R_kgDOL2yeJw';
 const giscusCategory = 'Comments';
 const giscusCategoryId = 'DIC_kwDOL2yeJ84Cvz0E';
+const giscusLightTheme = 'catppuccin_latte';
+const giscusDarkTheme = 'catppuccin_mocha';
 ---
-
-<div id="giscus-container" class="mt-8"></div>
 
 <script
   is:inline
+  src="https://giscus.app/client.js"
   data-repo={giscusRepo}
   data-repo-id={giscusRepoId}
   data-category={giscusCategory}
   data-category-id={giscusCategoryId}
->
-  (function() {
-    const container = document.getElementById('giscus-container');
-    let giscusLoaded = false;
+  data-mapping="pathname"
+  data-strict="1"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme={giscusLightTheme}
+  data-lang="ko"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 
-    function loadGiscus() {
-      if (giscusLoaded) return;
-      giscusLoaded = true;
+<script is:inline define:vars={{ giscusLightTheme, giscusDarkTheme }}>
+  (() => {
+    const getTheme = () =>
+      document.documentElement.classList.contains('dark') ? giscusDarkTheme : giscusLightTheme;
 
-      // 사이트에 맞게 정보 수정 원하는 대로 하세요
-      const script = document.createElement('script');
-      script.src = 'https://giscus.app/client.js';
-      script.setAttribute('data-repo', document.currentScript.getAttribute('data-repo'));
-      script.setAttribute('data-repo-id', document.currentScript.getAttribute('data-repo-id'));
-      script.setAttribute('data-category', document.currentScript.getAttribute('data-category'));
-      script.setAttribute('data-category-id', document.currentScript.getAttribute('data-category-id'));
-      script.setAttribute('data-mapping', 'pathname');
-      script.setAttribute('data-strict', '1');
-      script.setAttribute('data-reactions-enabled', '1');
-      script.setAttribute('data-emit-metadata', '0');
-      script.setAttribute('data-input-position', 'bottom');
-      script.setAttribute('data-theme', 'preferred_color_scheme');
-      script.setAttribute('data-lang', 'en');
-      script.crossOrigin = 'anonymous';
-      script.async = true;
+    const syncGiscusTheme = () => {
+      const theme = getTheme();
+      const giscusScript = document.querySelector('script[src="https://giscus.app/client.js"]');
+      const giscusFrame = document.querySelector('iframe.giscus-frame');
 
-      container.appendChild(script);
-    }
+      if (giscusScript) {
+        giscusScript.setAttribute('data-theme', theme);
+      }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          loadGiscus();
-          observer.disconnect();
-        }
-      });
-    }, {
-      rootMargin: '200px'
+      if (giscusFrame instanceof HTMLIFrameElement) {
+        giscusFrame.contentWindow?.postMessage(
+          {
+            giscus: {
+              setConfig: { theme }
+            }
+          },
+          'https://giscus.app'
+        );
+      }
+    };
+
+    syncGiscusTheme();
+
+    const observer = new MutationObserver(() => {
+      syncGiscusTheme();
     });
 
-    observer.observe(container);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
   })();
 </script>

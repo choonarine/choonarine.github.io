@@ -48,7 +48,7 @@ export const ThemeToggle: Component = () => {
     <button
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+      class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-md"
     >
       <svg
         class={`h-5 w-5 ${theme() === 'dark' ? 'absolute opacity-0' : 'opacity-100'}`}
