@@ -10,6 +10,7 @@ import rehypeKatex from 'rehype-katex';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://choonarine.github.io',
+
   integrations: [
     mdx({
       syntaxHighlight: 'shiki',
@@ -23,18 +24,21 @@ export default defineConfig({
     sitemap(),
     solidJs(),
   ],
+
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp'
     }
   },
+
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
       wrap: true
     }
   },
+
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });
