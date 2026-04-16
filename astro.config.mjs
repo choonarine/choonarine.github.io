@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import solidJs from '@astrojs/solid-js';
@@ -11,7 +11,6 @@ import rehypeKatex from 'rehype-katex';
 export default defineConfig({
   site: 'https://choonarine.github.io',
   integrations: [
-    tailwind(),
     mdx({
       syntaxHighlight: 'shiki',
       shikiConfig: {
@@ -34,5 +33,8 @@ export default defineConfig({
       theme: 'github-dark',
       wrap: true
     }
+  },
+  vite: {
+    plugins: [tailwindcss()]
   }
 });

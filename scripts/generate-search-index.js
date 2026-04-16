@@ -16,8 +16,8 @@ async function generateSearchIndex() {
 
   const searchIndex = [];
 
-  // Read all MDX files
-  const files = fs.readdirSync(contentDir).filter(file => file.endsWith('.mdx'));
+  // Read all Markdown content files
+  const files = fs.readdirSync(contentDir).filter((file) => /\.(md|mdx)$/.test(file));
 
   for (const file of files) {
     const filePath = path.join(contentDir, file);
@@ -39,6 +39,12 @@ async function generateSearchIndex() {
     const tagsMatch = frontmatter.match(/tags:\s*\[(.*?)\]/s);
     const tags = tagsMatch ? tagsMatch[1].split(',').map(t => t.trim().replace(/['"]/g, '')) : [];
     const category = frontmatter.match(/category:\s*['"](.+)['"]/)?.[1] || '';
+    const draftValue = frontmatter.match(/draft:\s*(true|false)/i)?.[1]?.toLowerCase();
+    const isDraft = draftValue === 'true';
+
+    if (isDraft) {
+      continue;
+    }
 
     // Remove code blocks and markdown syntax for better searching
     const cleanBody = body
@@ -48,7 +54,7 @@ async function generateSearchIndex() {
       .replace(/\n+/g, ' ')
       .trim();
 
-    const slug = file.replace('.mdx', '');
+    const slug = file.replace(/\.(md|mdx)$/, '');
 
     searchIndex.push({
       slug,

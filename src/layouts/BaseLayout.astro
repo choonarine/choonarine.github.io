@@ -5,8 +5,6 @@ import { MobileNav } from '../components/MobileNav';
 
 import { SITE_TITLE } from '../consts';
 
-import 'rehype-katex';
-
 interface Props {
   title: string;
   description?: string;
@@ -72,7 +70,7 @@ const navClass = (active: boolean) => [
               type="text"
               name="q"
               placeholder="Search..."
-              class="border border-zinc-300 bg-white px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-950 dark:focus:ring-zinc-100"
+              class="border border-zinc-300 bg-white px-3 py-1 text-sm focus:outline-hidden focus:ring-1 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-950 dark:focus:ring-zinc-100"
             />
           </form>
 

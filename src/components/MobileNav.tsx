@@ -79,7 +79,7 @@ export const MobileNav: Component<MobileNavProps> = (props) => {
                   type="text"
                   name="q"
                   placeholder="Search..."
-                  class="w-full border border-zinc-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-950 dark:focus:ring-zinc-100"
+                  class="w-full border border-zinc-300 bg-white px-3 py-2 text-sm focus:outline-hidden focus:ring-1 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-950 dark:focus:ring-zinc-100"
                 />
               </form>
             </div>
