@@ -1,0 +1,113 @@
+---
+title: 'Delta - Rust 언어로 제작된 Git 전용 pager'
+description: '최근에 인터넷에서 유행 중인 Delta라는 pager에 대해 알아봅시다.' 
+pubDate: 2026-04-17
+tags: ['Git', 'Rust', 'OSS']
+category: 'Tools'
+draft: true
+---
+
+import Callout from '../../components/Callout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+import diffVsDelta from './_assets/tools-delta/diff-vs-delta.png';
+import deltaGitDiff from './_assets/tools-delta/delta-git-diff.png';
+
+# Delta
+
+Rust 언어로 제작된 Git 전용 pager입니다. 페이징을 위해 `less`를 사용한다고 합니다.
+
+모든 내용은 해당 프로젝트의 repo를 참고하여 작성되었습니다. ([링크](https://github.com/dandavison/delta))
+
+## Installation
+
+설치 방법은 해당 [링크](https://dandavison.github.io/delta/installation.html)를 통해 확인하실 수 있고, 대부분의 패키지 매니저에서 `git-delta`라는 이름의 패키지로 존재합니다. 저는 Arch Linux라서 다음과 같이 실행했습니다.
+
+```sh
+sudo pacman -S git-delta
+```
+
+또는 Rust와 함께 Cargo가 설치되어 있는 경우에는 다음 명령어로도 설치가 가능한 것 같습니다.
+
+```sh
+cargo install git-delta
+```
+
+`dnf`, `pkg`, `emerge`나 `brew`에서도 `git-delta`를 설치하시면 됩니다.
+
+Windows 운영체제를 사용하시는 경우 터미널에서 다음 명령어로 설치하실 수 있습니다.
+
+```cmd
+winget install dandavison.delta
+```
+
+---
+
+정상적으로 설치하셨다면 `~/.gitconfig` (Windows는 `%userprofile\.gitconfig`) 경로에 다음과 같이 작성해 줍니다.
+
+```ini
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # n과 N 키로 diff 구간 이동 
+    dark = true      # or light = true, 해당 줄 없으면 자동 탐지
+
+[merge]
+    conflictStyle = zdiff3
+```
+
+저 같은 경우에는 아래 명령어를 순서대로 입력했습니다.   
+(위 방식대로 하셨다면 명령어는 입력하지 않으셔도 됩니다)
+
+```sh
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global delta.dark true  # or `delta.light true`, or omit for auto-detection
+git config --global merge.conflictStyle zdiff3
+```
+
+## Usage
+
+사용법은 단순합니다. 터미널에서 `delta -h` 명령어로 설명을 확인할 수 있습니다.
+
+또는 `delta [MINUS_FILE] [PLUS_FILE]`로 파일 diff도 확인 가능합니다.
+
+제가 만약 `file1.bak`와 `file1` 파일로 예시를 들어보겠습니다.
+
+아래는 기존의 `diff` 명령어와 `delta` 명령어로 diff를 확인한 결과입니다.
+
+<center><OptimizedImage src={diffVsDelta} alt="diff와 delta 비교 화면" width={650} /></center>
+
+`cat` 대신 `bat`를 사용하듯이, diff 결과를 상당히 깔끔하게 출력하는 것을 확인할 수 있습니다.
+
+---
+
+그럼 이제 Git으로 직접 확인해 보도록 합시다.
+
+아래는 `git diff` 명령어를 실행했을 때 나오는 예시 화면입니다.   
+(아래 이미지에 있는 코드는 작업 중인 FastAPI 소스 코드 중 일부입니다)
+
+<center><OptimizedImage src={deltaGitDiff} alt="Delta 적용 후 git diff 명령어 실행 화면" width={650} /></center>
+
+기본적인 조작 방식은 `less`와 동일하게 vi 문법을 그대로 사용할 수 있었습니다. ~~(애초에 Delta가 less를 사용하므로 당연합니다)~~
+
+기존의 `git diff` 명령어와는 다르게 문법 하이라이팅을 지원해서 보기 더 편한 것 같고, 공식 문서에 의하면 `Merge conflicts`와 `Git blame` 같은 경우에도 적용이 가능하다고 합니다.
+
+이 부분은 `Delta` 공식 문서의 [Usage](https://dandavison.github.io/delta/usage.html) 부분을 확인하시기 바랍니다.
+
+## Conclusion
+
+Git 자체만으로는 diff 확인 같은 것이 직관적이지가 않은데, 그런 부분을 CLI 환경에서도 원활하게 확인할 수 있는 좋은 툴인 것 같습니다.
+
+`cat`의 대체제인 `bat`나 `ls`의 대체제인 `eza` 처럼 있으면 좋으나 없어도 상관 없는 수준인 것 같습니다.
+
+초반 세팅이 좀 번거롭긴 하나, 본인 터미널을 꾸미거나 가꾸는 데 관심이 많으신 분들에게는 좋은 툴이라 생각합니다.
+
+---
+
+잘못된 내용 또는 추가하면 좋을 내용이 있다면 댓글 달아주시면 감사하겠습니다.   
+[페이지 제일 위로 이동](#)
