@@ -1,17 +1,23 @@
 ---
+import { getImagePath } from "astro-takumi";
+
 import '../styles/global.css';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { MobileNav } from '../components/MobileNav';
 
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = 'My personal website and blog' } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { url, site } = Astro;
+
 const pathname = new URL(Astro.request.url).pathname;
+
+const openGraphImageUrl = getImagePath({ url, site });
 
 const navItems = [
   { label: 'Posts', href: '/posts' },
@@ -32,8 +38,14 @@ const navClass = (active: boolean) => [
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url.href} />
+    <meta property="og:image" content={openGraphImageUrl} />
+
     <script is:inline>
       (function() {
         const getThemePreference = () => {
