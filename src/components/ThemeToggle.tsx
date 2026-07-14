@@ -1,22 +1,22 @@
-import { createSignal, createEffect, onMount, type Component } from 'solid-js';
+import { createSignal, createEffect, onMount, type Component } from "solid-js";
 
-type Theme = 'light' | 'dark';
+type Theme = "light" | "dark";
 
 export const ThemeToggle: Component = () => {
-  const [theme, setTheme] = createSignal<Theme>('light');
+  const [theme, setTheme] = createSignal<Theme>("light");
   const [mounted, setMounted] = createSignal(false);
 
   const getThemePreference = (): Theme => {
-    if (typeof localStorage !== 'undefined') {
-      const stored = localStorage.getItem('theme') as Theme | null;
+    if (typeof localStorage !== "undefined") {
+      const stored = localStorage.getItem("theme") as Theme | null;
       if (stored) return stored;
     }
-    
-    if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
-    
-    return 'light';
+
+    return "light";
   };
 
   onMount(() => {
@@ -27,21 +27,21 @@ export const ThemeToggle: Component = () => {
 
   createEffect(() => {
     if (!mounted()) return;
-    
+
     const currentTheme = theme();
     const html = document.documentElement;
-    
-    if (currentTheme === 'dark') {
-      html.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+
+    if (currentTheme === "dark") {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      html.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   });
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
@@ -51,7 +51,7 @@ export const ThemeToggle: Component = () => {
       class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-md"
     >
       <svg
-        class={`h-5 w-5 ${theme() === 'dark' ? 'absolute opacity-0' : 'opacity-100'}`}
+        class={`h-5 w-5 ${theme() === "dark" ? "absolute opacity-0" : "opacity-100"}`}
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ export const ThemeToggle: Component = () => {
       </svg>
 
       <svg
-        class={`h-5 w-5 ${theme() === 'light' ? 'absolute opacity-0' : 'opacity-100'}`}
+        class={`h-5 w-5 ${theme() === "light" ? "absolute opacity-0" : "opacity-100"}`}
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

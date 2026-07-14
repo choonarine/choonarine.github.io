@@ -1,6 +1,6 @@
-import SearchInput from './SearchInput';
-import SearchResults from './SearchResults';
-import { useSearch } from './hooks';
+import SearchInput from "./SearchInput";
+import SearchResults from "./SearchResults";
+import { useSearch } from "./hooks";
 
 export default function SearchWidget() {
   const { query, results, showInitial, handleSearch } = useSearch();

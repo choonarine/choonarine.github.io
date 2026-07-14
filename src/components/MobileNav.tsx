@@ -1,4 +1,4 @@
-import { createSignal, For, Show, type Component } from 'solid-js';
+import { createSignal, For, Show, type Component } from "solid-js";
 
 interface NavItem {
   label: string;
@@ -15,15 +15,15 @@ export const MobileNav: Component<MobileNavProps> = (props) => {
 
   const openMenu = () => {
     setIsMobileNavOpen(true);
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = 'hidden';
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "hidden";
     }
   };
 
   const closeMenu = () => {
     setIsMobileNavOpen(false);
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = '';
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
     }
   };
 
@@ -35,7 +35,12 @@ export const MobileNav: Component<MobileNavProps> = (props) => {
         class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 md:hidden"
       >
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
 
@@ -50,7 +55,12 @@ export const MobileNav: Component<MobileNavProps> = (props) => {
                 class="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900"
               >
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -58,13 +68,15 @@ export const MobileNav: Component<MobileNavProps> = (props) => {
             <nav class="flex-1 space-y-2 overflow-y-auto px-6 py-4">
               <For each={props.items}>
                 {(item) => {
-                  const active = props.pathname === item.href || (item.href === '/posts' && props.pathname.startsWith('/posts'));
+                  const active =
+                    props.pathname === item.href ||
+                    (item.href === "/posts" && props.pathname.startsWith("/posts"));
 
                   return (
                     <a
                       href={item.href}
                       onClick={closeMenu}
-                      class={`block px-1 py-2 no-underline hover:underline ${active ? 'underline' : ''}`}
+                      class={`block px-1 py-2 no-underline hover:underline ${active ? "underline" : ""}`}
                     >
                       {item.label}
                     </a>

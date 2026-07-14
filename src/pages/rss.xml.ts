@@ -1,11 +1,11 @@
-import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
-import rss from '@astrojs/rss';
+import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
+import rss from "@astrojs/rss";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 export const GET: APIRoute = async (context) => {
-  const posts = await getCollection('posts', ({ data }) => data.draft !== true);
+  const posts = await getCollection("posts", ({ data }) => data.draft !== true);
 
   return rss({
     title: SITE_TITLE,

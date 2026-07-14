@@ -85,6 +85,7 @@ ffmpeg -i input.mp4 -vcodec h264 -acodec aac -b:v 1M output.mp4
 ### Local Images
 
 Store images in:
+
 - `src/assets/` for imported images (optimized by Astro)
 - `public/` for static images (not optimized)
 
@@ -99,6 +100,7 @@ Store images in:
 ## Image Formats
 
 The OptimizedImage component automatically converts to WebP, which provides:
+
 - 25-35% better compression than JPEG
 - Support for transparency (like PNG)
 - Broad browser support

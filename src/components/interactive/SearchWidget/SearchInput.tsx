@@ -5,7 +5,7 @@ interface SearchInputProps {
 
 export default function SearchInput(props: SearchInputProps) {
   const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
     }
   };

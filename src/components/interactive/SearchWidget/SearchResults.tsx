@@ -1,6 +1,6 @@
-import { Show, For } from 'solid-js';
-import ResultItem from './ResultItem';
-import type { SearchResult } from './hooks';
+import { Show, For } from "solid-js";
+import ResultItem from "./ResultItem";
+import type { SearchResult } from "./hooks";
 
 interface SearchResultsProps {
   results: SearchResult[];
@@ -17,9 +17,7 @@ export default function SearchResults(props: SearchResultsProps) {
             when={props.results.length > 0}
             fallback={<p class="text-zinc-600 dark:text-zinc-400">No results found.</p>}
           >
-            <For each={props.results}>
-              {(item) => <ResultItem item={item} />}
-            </For>
+            <For each={props.results}>{(item) => <ResultItem item={item} />}</For>
           </Show>
         }
       >

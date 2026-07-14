@@ -1,17 +1,18 @@
 ---
-title: 'Understanding JavaScript Closures'
-description: 'Deep dive into JavaScript closures, how they work, and practical use cases in modern web development.'
+title: "Understanding JavaScript Closures"
+description: "Deep dive into JavaScript closures, how they work, and practical use cases in modern web development."
 pubDate: 2024-02-01
 updatedDate: 2024-02-10
-tags: ['JavaScript', 'Programming', 'Fundamentals']
-category: 'Programming'
+tags: ["JavaScript", "Programming", "Fundamentals"]
+category: "Programming"
 draft: true
 ---
 
-import Callout from '../../components/Callout.astro';
+import Callout from "../../components/Callout.astro";
 
 <Callout type="error" title="임시 안내">
-  해당 글은 임시용 글로, AI를 활용하여 작성되었습니다. <br /> 블로그 개발 테스트 목적으로 작성되었으며, 이후 삭제될 예정입니다.
+  해당 글은 임시용 글로, AI를 활용하여 작성되었습니다. <br /> 블로그 개발 테스트 목적으로
+  작성되었으며, 이후 삭제될 예정입니다.
 </Callout>
 
 ## What are Closures?
@@ -22,12 +23,12 @@ A closure is the combination of a function bundled together with references to i
 
 ```javascript
 function outerFunction() {
-  const outerVariable = 'I am outside!';
-  
+  const outerVariable = "I am outside!";
+
   function innerFunction() {
     console.log(outerVariable);
   }
-  
+
   return innerFunction;
 }
 
@@ -41,21 +42,19 @@ myFunction(); // Logs: "I am outside!"
 
 Closures enable data privacy by creating private variables:
 
-<Callout 
-  type="info" 
-  title="Tip"
->
-  Closures are the foundation of the Module Pattern, which is essential for organizing code and preventing global namespace pollution.
+<Callout type="info" title="Tip">
+  Closures are the foundation of the Module Pattern, which is essential for organizing code and
+  preventing global namespace pollution.
 </Callout>
 
 ```javascript
 function createCounter() {
   let count = 0;
-  
+
   return {
     increment: () => ++count,
     decrement: () => --count,
-    getCount: () => count
+    getCount: () => count,
   };
 }
 
@@ -71,7 +70,7 @@ Create specialized functions from generic ones:
 
 ```javascript
 function multiply(a) {
-  return function(b) {
+  return function (b) {
     return a * b;
   };
 }
@@ -91,8 +90,8 @@ Closures are commonly used in event handlers:
 function setupButton(buttonId) {
   const button = document.getElementById(buttonId);
   let clickCount = 0;
-  
-  button.addEventListener('click', () => {
+
+  button.addEventListener("click", () => {
     clickCount++;
     console.log(`Button ${buttonId} clicked ${clickCount} times`);
   });
@@ -105,11 +104,9 @@ function setupButton(buttonId) {
 
 A classic closure gotcha:
 
-<Callout 
-  type="warning" 
-  title="Important"
->
-  Using `var` in loops creates unexpected behavior due to function-level scope. Always use `let` or `const` to create block-level scope.
+<Callout type="warning" title="Important">
+  Using `var` in loops creates unexpected behavior due to function-level scope. Always use `let` or
+  `const` to create block-level scope.
 </Callout>
 
 ```javascript

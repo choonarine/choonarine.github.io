@@ -1,7 +1,7 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/typography';
 
@@ -9,9 +9,7 @@
 
 @theme {
   --font-sans: Pretendard, Noto Sans KR, system-ui, -apple-system, sans-serif;
-  --font-mono:
-    IBM Plex Code, IBM Plex Mono, ui-monospace, SFMono-Regular, Consolas,
-    monospace;
+  --font-mono: IBM Plex Code, IBM Plex Mono, ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
 /*
@@ -49,7 +47,8 @@
   kbd,
   pre,
   samp {
-    font-family: "IBM Plex Code", "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-family:
+      "IBM Plex Code", "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   }
 
   a {
