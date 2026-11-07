@@ -1,0 +1,2 @@
+[run]
+bun = true # astro 명령 실행 시 node 실행 방지

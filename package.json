@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "clean": "rm -rf dist .astro node_modules/.astro node_modules/.vite",
     "prebuild": "node scripts/generate-search-index.js",
     "build": "astro check && astro build",
+    "rebuild": "bun run clean && bun run build",
     "preview": "astro preview",
     "lint": "vp lint",
     "format": "vp fmt",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.2.2",
+    "@types/bun": "^1.4.4",
     "typescript": "^5.7.3"
   },
   "pnpm": {
@@ -41,5 +44,9 @@
       "esbuild",
       "sharp"
     ]
-  }
+  },
+  "trustedDependencies": [
+    "esbuild",
+    "sharp"
+  ]
 }

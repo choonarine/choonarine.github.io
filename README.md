@@ -1,6 +1,6 @@
 # choonarine.github.io
 
-Astro.js와 Tailwind CSS로 만든 개인 웹사이트이자 블로그입니다.
+Astro와 Tailwind CSS로 만든 개인 웹사이트이자 블로그입니다.
 
 GitHub Pages에 정적 페이지로 배포할 용도로 개발되었습니다.
 
@@ -11,7 +11,7 @@ GitHub Pages에 정적 페이지로 배포할 용도로 개발되었습니다.
 - 정적 사이트 생성(SSG) 기반 블로그/포트폴리오
 - MDX 콘텐츠, Shiki 빌드 타임 코드 하이라이트
 - Fuse.js 검색 인덱스, Giscus 댓글, 이미지/비디오 최적화
-- GitHub Actions로 GitHub Pages 자동 배포
+- GitHub Actions로 GitHub Pages 자동 빌드 & 배포
 
 ## 사용 기술 스택
 
@@ -24,10 +24,10 @@ GitHub Pages에 정적 페이지로 배포할 용도로 개발되었습니다.
 ## 세팅 및 실행
 
 ```bash
-pnpm install
-pnpm dev      # http://localhost:4321
-pnpm build    # 프로덕션 빌드 (prebuild로 검색 인덱스 생성)
-pnpm preview  # 빌드 결과 미리보기
+bun install
+bun run dev      # 개발 테스트
+bun run build    # 프로덕션 빌드 (prebuild로 검색 인덱스 생성)
+bun run preview  # 빌드 결과 미리보기
 ```
 
 ## MDX 작성법 (예시)
